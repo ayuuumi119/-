@@ -1,31 +1,26 @@
-# Streamlitライブラリをインポート
+python
 import streamlit as st
+import random
 
-# ページ設定（タブに表示されるタイトル、表示幅）
-st.set_page_config(page_title="タイトル", layout="wide")
+def main():
+    st.title("名言おみくじ")
 
-# タイトルを設定
-st.title('Streamlitのサンプルアプリ')
+    quotes = [
+        "人生に失敗がないと、成功もない。",
+        "夢を見ることができるなら、それは実現できる。",
+        "失敗は成功のもと。",
+        "人生は一度きり。",
+        "今日という日は二度と来ない。",
+        "明日死ぬかのように生きろ。永遠に生きるかのように学べ。",
+        "人生は自分で作り上げるものだ。",
+        "人生は短い。後悔しないように生きよう。",
+        "成功するためには、まず失敗を恐れないことだ。",
+        "人生は、自分が思っているよりもずっと短い。"
+    ]
 
-# テキスト入力ボックスを作成し、ユーザーからの入力を受け取る
-user_input = st.text_input('あなたの名前を入力してください')
+    quote = random.choice(quotes)
+    st.write("あなたの運勢は...")
+    st.write(quote)
 
-# ボタンを作成し、クリックされたらメッセージを表示
-if st.button('挨拶する'):
-    if user_input:  # 名前が入力されているかチェック
-        st.success(f'🌟 こんにちは、{user_input}さん! 🌟')  # メッセージをハイライト
-    else:
-        st.error('名前を入力してください。')  # エラーメッセージを表示
-
-# スライダーを作成し、値を選択
-number = st.slider('好きな数字（10進数）を選んでください', 0, 100)
-
-# 補足メッセージ
-st.caption("十字キー（左右）でも調整できます。")
-
-# 選択した数字を表示
-st.write(f'あなたが選んだ数字は「{number}」です。')
-
-# 選択した数値を2進数に変換
-binary_representation = bin(number)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{number}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
+if __name__ == "__main__":
+    main()
